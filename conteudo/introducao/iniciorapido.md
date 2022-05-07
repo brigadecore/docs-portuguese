@@ -1,8 +1,8 @@
 ---
-linkTitle: InicioRapido
-title: Inicio Rapido do Brigade
-description: Inicio Rapido do Brigade.
-section: introducao
+linkTitle: Início Rápido
+title: Início Rápido do Brigade
+description: Início Rápido do Brigade.
+section: Introdução
 weight: 3
 aliases:
   - /iniciorapido.md
@@ -16,7 +16,7 @@ processando o evento criado e no final você vai apagar todo ambiente criado.
 
 Se você preferir aprender assistindo um vídeo, confira este
 [guia adaptado para vídeo](https://www.youtube.com/watch?v=VFyvYOjm6zc) no
-nosso YouTube channel.
+nosso canal do YouTube.
 
 - [Pré-requisitos](#pré-requisitos)
 - [Como Instalar](#como-instalar)
@@ -38,17 +38,17 @@ nosso YouTube channel.
 > avaliar o Brigade em seu cluster local de desenvolvimento, não devendo ser
 > utilizada para ambientes compartilhados, _especialmente para ambiente de produção_. 
 > Olhe nosso [Guida de Desenvolvimento](/topics/operators/deploy/) para instruções que sejam 
-> aplicavéis para ambientes compartilhados ou clusters de produção. Nos testamos essas instruções em 
+> aplicavéis para ambientes compartilhados ou clusters de produção. Nós testamos essas instruções em 
 > um cluster [KinD](https://kind.sigs.k8s.io/) local.
 
 * Cluster Kubernetes local de _desenvolvimento_ utilizando versão v1.16.0 ou superior
 * [Helm v3.7.0+](https://helm.sh/docs/intro/install/)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
-* Espaço de disco livre. Para ser bem sucessida, a instalação requer espaço de disco livre suficiente.
+* Espaço em disco livre. Para ser bem sucedida, a instalação requer espaço em disco livre suficiente.
 
 ## Como Instalar
 
-Essa secção especificamente cobre a instalação dos componentes do servidor
+Essa seção especificamente cobre a instalação dos componentes do servidor
 do Brigade num cluster Kubernetes local de desenvolvimento. Nos iremos instalar
 a linha de comando CLI do Brigade mais tarde quando formos testar o Brigade na prática.
 
@@ -78,7 +78,7 @@ a linha de comando CLI do Brigade mais tarde quando formos testar o Brigade na p
 
     > ⚠️ A Instalação e processo de inicialização pode demorar alguns minutos para finalizar.
 
-    Se a instalação falhar, leia instruções na secção de [Resolução de Problemas](#resolução-de-problemas).
+    Se a instalação falhar, leia instruções na seção de [Resolução de Problemas](#resolução-de-problemas).
 
 ## Experimentando
 
@@ -148,7 +148,7 @@ para que esta configuração se torne permanente:
 
 ### Logando no Brigade
 
-> ⚠️ Nesta secção iremos logar no Brigade como usuário root. Essa opção deveria estar disabilitada em ambientes de produção. Leia mais sobre
+> ⚠️ Nesta seção iremos logar no Brigade como usuário root. Essa opção deveria estar disabilitada em ambientes de produção. Leia mais sobre
 > autenticação de usuário [aqui](/topics/administrators/authentication/).
 
 Para autenticar no Brigade como usuário root, você primeiro precisa adquirir a senha gerada automaticamente pelo sistema durante instalação:
@@ -179,7 +179,7 @@ A flag `--insecure` informa ao comando `brig login` para ignorar o certificado a
 usado pela instalação local do Brigade.
 
 Se o comando `brig login` travar or falhar, você deve checar se a port-forwarding
-criado para acessar o serviço do `brigade-apiserver` foi bem sucessida na secção anterior.
+criado para acessar o serviço do `brigade-apiserver` foi bem sucessida na seção anterior.
 
 ### Criando um Projecto do Brigade
 
