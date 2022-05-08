@@ -24,7 +24,7 @@ nosso canal do YouTube.
   - [Port Forwarding](#port-forwarding)
   - [Instalar a linha de comando CLI do Brigade](#instalar-a-linha-de-comando-cli-do-brigade)
   - [Logando no Brigade](#logando-no-brigade)
-  - [Criando um Projecto do Brigade](#criando-um-projecto-do-brigade)
+  - [Criando um Projeto do Brigade](#criando-um-projeto-do-brigade)
   - [Criando um Evento](#criando-um-evento)
 - [Limpeza do Ambiente](#limpeza-do-ambiente)
 - [Próximos passos](#próximos-passos)
@@ -52,7 +52,7 @@ Essa seção especificamente cobre a instalação dos componentes do servidor
 do Brigade num cluster Kubernetes local de desenvolvimento. Nos iremos instalar
 a linha de comando CLI do Brigade mais tarde quando formos testar o Brigade na prática.
 
-1. Abilitar a flag experimental do Helm para dar suporte ao OCI (Open Container Initiative):
+1. Habilitar a flag experimental do Helm para dar suporte ao OCI (Open Container Initiative):
 
     **POSIX**
     ```shell
@@ -84,7 +84,7 @@ a linha de comando CLI do Brigade mais tarde quando formos testar o Brigade na p
 
 ### Port Forwarding
 
-Como você esta executando Brigade localmente, deve utilizar port forwarding para fazer com que 
+Como você esta executando o Brigade localmente, deve utilizar port forwarding para fazer com que 
 a API do Brigade fique disponível na sua network local:
 
 **POSIX**
@@ -137,8 +137,8 @@ $ chmod +x /usr/local/bin/brig
 > $env:PATH+=";$env:USERPROFILE\bin"
 ```
 
-O script acima faz o download do `brig.exe` e adiciona ele no sua variável de ambiente local `PATH` na seccão atual
-da sua sheel. Adicione a seguinte linha para o seu
+O script acima faz o download do `brig.exe` e adiciona ele no sua variável de ambiente local `PATH` na seção atual
+da sua shell. Adicione a seguinte linha no seu
 [PowerShell Profile](https://www.howtogeek.com/126469/how-to-create-a-powershell-profile/)
 para que esta configuração se torne permanente:
 
@@ -148,10 +148,10 @@ para que esta configuração se torne permanente:
 
 ### Logando no Brigade
 
-> ⚠️ Nesta seção iremos logar no Brigade como usuário root. Essa opção deveria estar disabilitada em ambientes de produção. Leia mais sobre
+> ⚠️ Nesta seção iremos logar no Brigade como usuário root. Essa opção deveria estar desabilitada em ambientes de produção. Leia mais sobre
 > autenticação de usuário [aqui](/topics/administrators/authentication/).
 
-Para autenticar no Brigade como usuário root, você primeiro precisa adquirir a senha gerada automaticamente pelo sistema durante instalação:
+Para autenticar no Brigade como usuário root, você primeiro precisa adquirir a senha gerada automaticamente pelo sistema durante a instalação:
 
 **POSIX**
 ```shell
@@ -178,10 +178,10 @@ $ brig login --insecure --server https://localhost:8443 --root --password "${API
 A flag `--insecure` informa ao comando `brig login` para ignorar o certificado auto-assinado
 usado pela instalação local do Brigade.
 
-Se o comando `brig login` travar or falhar, você deve checar se a port-forwarding
-criado para acessar o serviço do `brigade-apiserver` foi bem sucessida na seção anterior.
+Se o comando `brig login` travar ou falhar, você deve checar se a port-forwarding
+criado para acessar o serviço do `brigade-apiserver` foi bem sucedida na seção anterior.
 
-### Criando um Projecto do Brigade
+### Criando um Projeto do Brigade
 
 Um [projeto](/topics/project-developers/projects) no brigade faz o link entre eventos subscritos e a configuração 
 de seus manipuladores(event handler).
@@ -195,7 +195,7 @@ de seus manipuladores(event handler).
     $ brig init --id first-project
     ```
 
-    Esse comando irá criar um definição de projeto em `.brigade/project.yaml`
+    Esse comando irá criar uma definição de projeto em `.brigade/project.yaml`
     similar com a descrita abaixo. Esta definição subscreve para o evento `exec`
     emitido pela fonte chamada `brigade.sh/cli`. (Esse tipo de evento é criado usando
     a linha de comando CLI do brigade, e adequado para efeito de demonstração.) Quando
@@ -221,9 +221,9 @@ de seus manipuladores(event handler).
       brigade.ts: |
         import { events, Job } from "@brigadecore/brigadier"
         
-        // Use events.on() to define how your script responds to different events. 
-        // The example below depicts handling of "exec" events originating from
-        // the Brigade CLI.
+        // Use events.on() para definir como o seu script responde para eventos diferentes. 
+        // O exemplo abaixo retrata a manipulação de eventos "exec" originados a partir da
+        // linha de comando CLI do Brigade.
         
         events.on("brigade.sh/cli", "exec", async event => {
             let job = new Job("hello", "debian:latest", event)
@@ -235,7 +235,7 @@ de seus manipuladores(event handler).
         events.process()
     ```
 
-2. O comando anterior apenas gera a definição de projeto baseado num template. Nos 
+2. O comando anterior apenas gera a definição de projeto baseado num template. Nós 
    precisamos fazer o upload dessa definição no brigade para completar a criação do projeto:
 
     ```shell
