@@ -1,7 +1,7 @@
 ---
 title: Funções/Papéis do Brigade
 description: Uma introdução das Funções/Papéis do Brigade
-section: topicos
+section: tópicos
 weight: 2
 aliases:
   - /funcoes.md
@@ -27,14 +27,14 @@ vamos mergulhar no conteúdo.
     - [Armazenamento](/topicos/operadores/armazenamento): Opções e configurações de Armazenamento(Storage) para o Brigade
     - [Gateways](/topicos/operadores/gateways): Utilizando e desenvolvendo gateways no Brigade
   * [Administradores] - Usuários que se preocupam em gerenciar autenticação e autorização no Brigade
-    - [Autenticação](/topicos/administradores/autenticacao): Estratégias de Autenticacao no Brigade
+    - [Autenticação](/topicos/administradores/autenticacao): Estratégias de Autenticação no Brigade
     - [Autorização](/topicos/administradores/autorizacao): Configuração de Autorização no Brigade
-  * [Desenvolvedores de Projetos] - Usuários que criam projetos e escrevem o código dos scripts usados para for manipular os eventos
+  * [Desenvolvedores de Projetos] - Usuários que criam projetos e escrevem o código dos scripts usados para manipular os eventos
     - [Projetos](/topicos/desenvolvedor-de-projetos/projetos): Criar e gerenciar projetos do Brigade
     - [Eventos](/topicos/desenvolvedor-de-projetos/eventos): Entendendo e manipulando eventos do Brigade
     - [Usando Segredos](/topicos/desenvolvedor-de-projetos/segredos): Usando segredos nos projetos do Brigade
-    - [Usando a CLI do Brigade](/topicos/project-developers/brig): Usando a linha de comand CLI, chamada `brig` para interagir com o Brigade
-    - [Brig term](/topicos/desenvolvedor-de-projetos/brigterm): Usando o `brig term` como utilitátio de visualização(painel de controle) no seu terminal
+    - [Usando a CLI do Brigade](/topicos/project-developers/brig): Usando a linha de comando CLI, chamada `brig`, para interagir com o Brigade
+    - [Brig term](/topicos/desenvolvedor-de-projetos/brigterm): Usando o `brig term` como utilitário de visualização(painel de controle) no seu terminal
 
 [Operadores]: /topicos/operadores
 [Administradores]: /topicos/administradores
