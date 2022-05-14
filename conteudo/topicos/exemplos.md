@@ -16,11 +16,11 @@ Confira o diretório de [Exemplos] na raiz do repositório git do Brigade.
 
 Estes são alguns dos tipos de projetos que você irá encontrar neste diretório:
 
-  * [Primeiro Tarefa][first-job]: Um projeto com script embutido para gerenciamento de
+  * [Primeira Tarefa][first-job]: Um projeto com script embutido para gerenciamento de
     eventos capaz de criar e executar uma tarefa(Job).
   * [Grupos][groups]: Um projeto com script embutido para orquestração de múltiplas
-    tarefas(Jobs) executas em sequência e concorrentemente.
-  * [Git][git]: Um projeto com script carregado de uma repositório Git associado.
+    tarefas(Jobs) executadas em sequência e concorrentemente.
+  * [Git][git]: Um projeto com script carregado de um repositório Git associado.
   * [Área de Trabalho Compartilhada][shared-workspace]: Um projeto com script embutido para
     demonstrar o uso de Área de trabalho(workspace) compartilhada entre o Worker e suas tarefas(Jobs)
   * [Primeiro Payload][first-payload]: Um projeto com script embutido para demonstrar
