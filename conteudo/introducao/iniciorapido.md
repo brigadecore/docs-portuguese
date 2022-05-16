@@ -69,7 +69,7 @@ a linha de comando CLI do Brigade mais tarde quando formos testar o Brigade na p
     ```shell
     $ helm install brigade \
         oci://ghcr.io/brigadecore/brigade \
-        --version v2.4.0 \
+        --version v2.5.0 \
         --create-namespace \
         --namespace brigade \
         --wait \
@@ -109,7 +109,7 @@ para os sistemas operacionais mais comuns:
 **Linux**
 
 ```shell
-$ curl -Lo /usr/local/bin/brig https://github.com/brigadecore/brigade/releases/download/v2.4.0/brig-linux-amd64
+$ curl -Lo /usr/local/bin/brig https://github.com/brigadecore/brigade/releases/download/v2.5.0/brig-linux-amd64
 $ chmod +x /usr/local/bin/brig
 ```
 
@@ -125,7 +125,7 @@ $ brew install brigade-cli
 Alternativamente, você pode instalar o Brigade manualmente fazendo o download do binário:
 
 ```shell
-$ curl -Lo /usr/local/bin/brig https://github.com/brigadecore/brigade/releases/download/v2.4.0/brig-darwin-amd64
+$ curl -Lo /usr/local/bin/brig https://github.com/brigadecore/brigade/releases/download/v2.5.0/brig-darwin-amd64
 $ chmod +x /usr/local/bin/brig
 ```
 
@@ -133,7 +133,7 @@ $ chmod +x /usr/local/bin/brig
 
 ```powershell
 > mkdir -force $env:USERPROFILE\bin
-> (New-Object Net.WebClient).DownloadFile("https://github.com/brigadecore/brigade/releases/download/v2.4.0/brig-windows-amd64.exe", "$ENV:USERPROFILE\bin\brig.exe")
+> (New-Object Net.WebClient).DownloadFile("https://github.com/brigadecore/brigade/releases/download/v2.5.0/brig-windows-amd64.exe", "$ENV:USERPROFILE\bin\brig.exe")
 > $env:PATH+=";$env:USERPROFILE\bin"
 ```
 
@@ -265,7 +265,7 @@ Abaixo temos um exemplo de execução do comando:
 Created event "2cb85062-f964-454d-ac5c-526cdbdd2679".
 
 Waiting for event's worker to be RUNNING...
-2021-08-10T16:52:01.699Z INFO: brigade-worker version: v2.4.0
+2021-08-10T16:52:01.699Z INFO: brigade-worker version: v2.5.0
 2021-08-10T16:52:01.701Z DEBUG: writing default brigade.ts to /var/vcs/.brigade/brigade.ts
 2021-08-10T16:52:01.702Z DEBUG: using npm as the package manager
 2021-08-10T16:52:01.702Z DEBUG: path /var/vcs/.brigade/node_modules/@brigadecore does not exist; creating it
@@ -324,7 +324,7 @@ usando o seguinte comando:
 $ helm uninstall brigade -n brigade
 $ helm install brigade \
     oci://ghcr.io/brigadecore/brigade \
-    --version v2.4.0 \
+    --version v2.5.0 \
     --namespace brigade \
     --wait \
     --timeout 300s
