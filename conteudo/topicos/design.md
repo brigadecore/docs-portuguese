@@ -34,9 +34,9 @@ __Projetos__ são definidos pelo usuário. Eles fazem o link entre subscrever a 
 
 ### O Ciclo de vida de um Evento
 
-Quando um novo [evento](#eventos) é recebido no [API server](#o-servidor-de-api)
-do Brigade, uma cópia única do evento será adicionada na fila do [event bus](#o-event-bus)
-para cada [projeto](#projetos) que subscreveu ao evento.
+Quando um novo [evento](#eventos) é recebido no [Servidor de API do Brigade](#o-servidor-de-api),
+uma cópia única do evento será adicionada na fila do [event bus](#o-event-bus) para cada [projeto](#projetos)
+que subscreveu ao evento.
 
 Se existir capacidade disponivel no Cluster, e seguindo a configuração do projeto, um [worker](#workers)
 será executado para processar cada evento, utilizando o script definido no projeto.
@@ -53,7 +53,7 @@ básica por usuários recém-chegados ao Brigade.
 
 ### O ambiente de execução das Cargas de trabalho(Workloads)
 
-O slogan do Brigade vem sendo por muito tempo "scripting baseado em eventos para Kubernetes,"
+O slogan do Brigade vem sendo por muito tempo "scripting baseado em eventos para Kubernetes",
 mas desde a versão v2, Kubernetes é efetivamente um detalhe na implementação.
 
 Com a exceção de casos mais avançados onde um script do Brigade pode modificar
@@ -64,11 +64,11 @@ utilizando a própria API do Brigade. (Normalmente utlizando CLI ou outra ferram
 
 O [Servidor de API](#o-servidor-de-api) trata Kubernetes como um dos seus vários
 componentes de back-end. Especificamente, ele utiliza Kubernetes para executar
-seas cargas de trabalho(workloads). Em outras palavras, Kubernetes é usado para hospedar os ambientes
+suas cargas de trabalho(workloads). Em outras palavras, Kubernetes é usado para hospedar os ambientes
 containerizados na qual ele executa os scripts dos usuários.
 
-Apesar de os mantenedores do projeto do Brigade não ter planos imediatos para dar
-suporte a formas alternativas de implantar o Brigade, fora o Kubernetes, não valeria
+Apesar de os mantenedores do projeto do Brigade não terem planos imediatos para dar
+suporte a formas alternativas de implantar o Brigade fora o Kubernetes, não valeria
 em nada se o Brigade tivesse sido arquitetado de uma forma que impedisse isso de
 acontecer no futuro.
 
@@ -89,7 +89,7 @@ do Servidor de API.
 
 O [Servidor de API](#o-servidor-de-api) utiliza o [MongoDB](https://www.mongodb.com/)
 para manter os registros. Isso inclui, mas não é limitado a isso, armazenamento dos
-projetos definidos pelos usuários, eventos, e até logs gerados pelos scripts dos usuários.
+projetos definidos pelos usuários, eventos e até logs gerados pelos scripts dos usuários.
 
 ### O Event Bus
 
@@ -104,7 +104,7 @@ FIFO (first in, first out), ou seja primeiro a ser recebido, será o primeiro a 
 
 __Gateways de Eventos__ são componentes periféricos instalados separadamente do
 Brigade. Sua função é de receber eventos de sistemas externos, transformar estes eventos
-em eventos do _Brigade_, e utilizar a API do Brigade para adicioná-los na fila do
+em eventos do _Brigade_ e utilizar a API do Brigade para adicioná-los na fila do
 [event bus](#o-event-bus).
 
 ### O Agendador
@@ -133,7 +133,7 @@ O componente __Observador__ tem a função direta de monitorar as cargas de trab
 [O Ambiente de Execução das cargas de trabalho(Workloads)](#o-ambiente-de-execução-das-cargas-de-trabalhoworkloads)
 esta executando e depois informar o seu estado através de uma chamada a API do Brigade.
 
-Quando o observador identifica que o carga de trabalho(workload) foi processada, ele é também responsável
+Quando o observador identifica que o carga de trabalho(workload) foi processada, ele também é responsável
 por finalizar a sua execução após um curto período gracioso(grace period). Isto não
 é feito diretamente, mas novamente utilizando uma chamada ao servidor de API. O propósito
 do período gracioso é melhorar a probabilidade que agentes de log capturem _todos_ logs produzidos
@@ -162,7 +162,7 @@ scripts usando
 [yarn](https://yarnpkg.com/).
 
 Através da configuração do projeto, é possível usar workers baseados numa imagem docker
-alternativa. Estas images poderiam prover suporte para manipuladores que são definidos
+alternativa. Estas imagens poderiam prover suporte para manipuladores que são definidos
 usando linguagens de script alternativas ou até mesmo usando uma sintaxe declarativa.
 
 ### Agentes de Log
