@@ -66,7 +66,7 @@ Created project "hello-world".
 
 O projeto subscreve para um evento, o `exec` evento gerado pelo comando
 `brig event create`. Os eventos que um projeto subscreve são configurados
-na secão `eventSubscriptions` do arquivo de configuração(e.g. `project.yaml`).
+na seção `eventSubscriptions` do arquivo de configuração(e.g. `project.yaml`).
 
 Próximo passo, vamos disparar a execução do script denifido do projeto através
 da criação de um evento deste tipo:
@@ -142,10 +142,10 @@ Waiting for event's worker to be RUNNING...
 Hello, World!
 ```
 
-> Note: o sucesso/fracasso de um evento é determinado pelo código de saída do
-> Worker executando o script. Se o script falhar ou If the script fails or
-> apresentar um erro, o Worker irá suspender(exit) execução com um erro que
-> não seja zero e seja considerado como uma falha.
+> Nota: o sucesso/fracasso de um evento é determinado pelo código de saída do
+> Worker executando o script. Se o script falhar ou apresentar um erro, o Worker
+> irá suspender(exit) execução com um erro que não seja zero e seja considerado
+> como uma falha.
 
 Como os projetos podem subscrever para vários tipos de eventos(oriundos de várias
 fontea de código também), definindo vários manipuladores de eventos nos seus scripts
@@ -309,20 +309,20 @@ events.process();
 ```
 [03-first-job](https://github.com/brigadecore/brigade/tree/main/examples/03-first-job)
 
-A command can be anything that is supported by the job's image. In the example
-above, our command invokes the `echo` binary with the arguments supplied.
+Um comando pode ser qualquer coisa que a imagem docker do Job suporte. No exemplo
+acima, nosso comando chama o binário `echo` e fornece argumentos.
 
-For multiple commands, a common approach is for the `command` array to consist
-of one element such as `["/bin/sh"]` or `["/bin/bash"]` and then the first
-element of the `arguments` array be `"-c"`, followed by entries comprising the
-shell commands needed.
+Para múltiplos comandos, uma abordagem é aonde o array do `command` é composto
+de um elemento como `["/bin/sh"]` ou `["/bin/bash"]` e o primeiro elemento do
+array de `arguments` é `"-c"`, seguidos por entradas compreendendo outros comandos
+shell necessários.
 
-However, as construction of such commands may soon prove unwieldy due to
-increased complexity, we recommend writing a shell script and making this
-available to the script to run (e.g. placing it in the git repository
-associated with the project or adding it to a [custom Worker image]).
+Entretanto, quando a contrução destes comandos se tornarem complicadas e complexas,
+recomendamos escrever um shell script e torná-lo disponível para ser executado
+(exemplo: colocando este shell script em um repositório git associado com o projeto
+ou adicionando o script em uma [imagem docker customizada do Worker]).
 
-Let's run the example:
+Vamos rodar este exemplo:
 
 ```plain
 $ brig event create --project first-job --follow
@@ -334,8 +334,8 @@ Waiting for event's worker to be RUNNING...
 2021-09-22T20:11:10.909Z [job: my-first-job] INFO: Creating job my-first-job
 ```
 
-Now, to see the logs from `my-first-job`, we issue the following brig command
-utilizing the generated event ID.
+Agora, para visualizar os logs do `my-first-job` precisamos executar o seguinte comando
+utilizando o ID gerado pelo evento.
 
 ```plain
 $ brig event logs --id 046c09cd-76cb-49ea-b40c-d3e0e557de62 --job my-first-job
@@ -343,15 +343,15 @@ $ brig event logs --id 046c09cd-76cb-49ea-b40c-d3e0e557de62 --job my-first-job
 My first job!
 ```
 
-> Note: `job.run()` will throw an exception if the job fails. Additionally, job
-> success/failure is determined by the exit code of the job's
-> `primaryContainer`.
+> Nota: `job.run()` irá criar um exceção se o job falhar. Adicionalmente, o
+> sucesso/falha do job é determinado pelo código de saída do `primaryContainer`
+> job.
 
-[custom Worker image]: /topics/scripting/workers
+[imagem docker customizada do Worker]: /topicos/scripting/workers
 
-### Combining jobs into a pipeline
+### Combinando jobs em uma pipeline
 
-Now we can take things one more step and create _two jobs_ that each do something.
+Agora podemos ir para o próximo passo e criar _dois jobs_ que individualmente fazem alguma coisa.
 
 ```javascript
 const { events, Job } = require("@brigadecore/brigadier");
@@ -372,12 +372,12 @@ events.process();
 ```
 [04-simple-pipeline](https://github.com/brigadecore/brigade/tree/main/examples/04-simple-pipeline)
 
-In this example we create two jobs (`my-first-job` and `my-second-job`). Each
-starts a Debian container and prints a message, then exits. On account of the
-use of `await`, `job2` won't run until `job1` completes, so these jobs
-_implicitly_ run sequentially.
+Neste exemplo criamos dois jobs (`my-first-job` e `my-second-job`). Cada job
+inicia um container Debian, imprime uma mensagem e finaliza. Como `job1` usa
+`await`, `job2` não irá executar até que o `job1` finalize, então estes jobs
+_implicitamente_ estão rodando sequencialmente.
 
-Let's run the example and then view each job's logs:
+Vamos rodar o exemplo e então visualizar os logs de cada job:
 
 ```
 $ brig event create --project simple-pipeline
@@ -393,13 +393,14 @@ $ brig event logs --id 58e7d3cf-b7d2-4ab7-98ad-326a99f10a25 --job my-second-job
 My second job!
 ```
 
-## Serial and Concurrent job groups
+## Grupos de Job Serial e Concurrent
 
-Now that we've seen an example project that runs multiple jobs, let's look at
-the methods we have for specifiying _how_ the jobs run, i.e. sequentially or
-concurrently -- or, as we're about to see, a combination thereof.
+Agora que vimos um exemplo de projeto que roda múltiplos jobs, vamos dar uma
+olhada nos métodos que temos para especificar _como_ os jobs rodam,
+exemplo: sequencialmente or simultaneamente -- ou, como veremos em seguida,
+uma combinação combination disso.
 
-For example, we can run two sequences of jobs concurrently:
+Por exemplo, podemos rodar duas sequências de jobs simultaneamente:
 
 ```javascript
 const { events, Job } = require("@brigadecore/brigadier");
@@ -431,44 +432,43 @@ events.process();
 ```
 [05-groups](https://github.com/brigadecore/brigade/tree/main/examples/05-groups)
 
-There are two things to notice in the example above:
+Existem duas coisas para se perceber neste exemplo acima:
 
-1. Both the `concurrent` and `sequence` methods exist on the `Job` object.
-2. The return type for both methods is a generic "runnable", i.e. an object
-  that `run()` can then be called on, just like a standalone job instance.
+1. Ambos métodos `concurrent` e `sequence` existem no objeto `Job`.
+2. O tipo de retorno para ambos os métodos é genérico "runnable", exemplo: um objeto
+   `run()` pode então ser chamado, da mesma forma que uma instância standard do Job.
 
-Here's a breakdown of each method:
+Em seguida temos o descritivo de cada método:
 
-- `Job.sequence()` takes an array of runnables (e.g. a job or a group of
-  jobs) and runs them _in sequence_. A new runnable is started only when the
-  previous one completes. The sequence completes when the last runnable has
-  completed (or when any runnable fails). A sequential group is itself
-  considered a success or failure on the basis of all its jobs completing
-  successfully.
-- `Job.concurrent()` takes an array of runnables and runs them all
-  _concurrently_. When run, all runnables are started simultaneously (subject
-  to scheduling constraints). The concurrent group completes when all Runnables
-  have completed. A concurrent group is itself considered a success or failure
-  on the basis of all its jobs completing successfully.
+- `Job.sequence()` utiliza um array de objetos runnables (exemplo: um job ou um grupo
+  de jobs) e executá-los _em sequência_. Um novo objeto runnable é iniciado apenas quando
+  o anterior finalizar. A sequência completa quando o último objeto runnable tiver finalizado
+  (ou quando qualquer objeto runnable falhar). Um grupo sequencial se considera finalizado com
+  sucesso ou com falha se todos os jobs foram bem sucessidos ou não.
+- `Job.concurrent()` utiliza um array de objetos runnables e executá-los
+  _simultaneamente_. Quando execução é iniciada, todos os objetos runnables são iniciados
+  simultaneamente (dependendo das restrições do agendador). O grupo simultâneo finaliza quando
+  todos os objetos runnables finalizarem. Um grupo simultâne se considera finalizado com sucesso
+  ou falha se todos os jobs foram bem sucessidos ou não.
 
-As both of these methods return a runnable, they can be chained. In the example
-above, `job1` and `job2` run _in sequence_, as do `jobA` and `jobB`, but both
-sequences are run _concurrently_.
+Como ambos os métodos retornam um objeto runnable, eles podem ser amarrados. Neste exemplo acima,
+`job1` e `job2` rodam _em sequência_, da mesma forma que `jobA` e `jobB`, mas ambas
+sequências rodam _simultaneamente_.
 
-This is the way script writers can control the order in which groups of jobs
-are run.
+Esta é a maneira como desenvolvedores de script podem controlar a ordem na qual os grupos de jobs
+são executadas.
 
-For example, if using Brigade to implement CI, you might wish to divide checks
-into those that are resource intensive (e.g. longer-running builds, integration
-tests) and those that are less so (e.g. linting, unit tests). Both groups can
-run the jobs within concurrently, but the groups themselves might be run in
-sequence, such that no resource intensive checks are executed unless/until all
-of the less resource intensive checks have passed.
+Por exemplo, se você utilizar Brigade para executar uma CI(integração contínua), você poderia desejar
+dividir verificações em aquelas que requerem mais recursos para serem processadas(exemplo: compilações demoradas,
+testes de integração) e aquelas verificações que requerem menos recrusos para serem processadas como(exemplo: linting,
+teste unitário). Ambos os grupos podem executar os jobs simultaneamente, mas os grupos rodam de forma
+sequencial eles mesmos, de forma que nenhuma verificação que necessita de mais recursos para serem processadas
+sejam executadas até todas as verificações que requerem menos recursos tenham sido processadas.
 
-### Running a script from a Git Repository
+### Rodando um script a partir de um repositório Git
 
-Earlier we talked about how a project may have an associated Git repository.
-Let's look at one such project now.
+Anteriomente discutimos como um projeto poderia ter um repositório Git associado.
+Vamos analisar um destes projetos agora.
 
 ```yaml
 apiVersion: brigade.sh/v2
@@ -491,14 +491,14 @@ spec:
 ```
 [06-git](https://github.com/brigadecore/brigade/tree/main/examples/06-git)
 
-Notice that there is no embedded script in this project definition. Rather, the
-project specifies where the Brigade config file directory
-(`configFilesDirectory`) should be located in the repository configured under
-the `git` section. (If not supplied, the default is to look for the `.brigade`
-directory at the git repository's root).
+Perceba que não existe script embutido nesta definição de projeto. De preferência, o
+projeto especifica a localização do diretório do arquivo de configuração do Brigade
+(`configFilesDirectory`) dentro do repositório configurado na seção `git`.
+(Se o diretório não for fornecido, a localização padrão será o diretório `.brigade`
+na raiz do repositório Git).
 
-The config file directory is where the Brigade script is placed. In this
-example, the `brigade.js` script is simply a `console.log()` statement.
+O diretório de configuração é aonde o script do Brigade é armazenado. Neste exemplo,
+o script `brigade.js` é simplesmente uma instrução `console.log()`.
 
 ```javascript
 console.log("Hello, Git!");
@@ -516,20 +516,19 @@ Waiting for event's worker to be RUNNING...
 Hello, Git!
 ```
 
-Here's what is happening behind the scenes when we create an event for this
-project: Because the project has a Git repository associated with it, Brigade
-is automatically fetching a clone of that repository and attaching it to the
-Worker in charge of running the script.
+Vamos discutir aqui o que acontece nos bastidores do Brigade quando criamos
+um evento para este projeto: Como o projeto tem um repositório Git associado,
+Brigade automaticamente começa a buscar e clonar o repositório Git, o qual fica
+disponível para o worker que esta processando o script.
 
-By default, the repository contents are not automatically mounted to jobs in
-the project's Brigade script. However, mounting the contents to a job is easily
-accomplished via the `sourceMountPath` configuration on a job's
-`primaryContainer`.
+Por padrão, o conteúdo do repositório não é automaticamente montado nos jobs criados
+no script do projeto. Entretanto, você pode montar este conteúdo no job de uma forma muito
+simples, usando a configuração `sourceMountPath` do `primaryContainer` do Job.
 
-The following example shows how a job can be configured to access the repo in
-order to run a test target. It also configures `workingDirectory` with the same
-value as `sourceMountPath` so that the job needn't worry about changing into
-the appropriate directory before running commands:
+O próximo exemplo mostra como um job pode ser configurado para acessar o repositório
+de forma que possamos executar um teste. Este exemplo também configura `workingDirectory`
+com os mesmo valor que `sourceMountPath` para que o job não precise se preocupar em
+alterar para o diretório apropriado antes de executar comandos:
 
 ```javascript
 const { events, Job } = require("@brigadecore/brigadier");
@@ -547,49 +546,49 @@ events.on("brigade.sh/github", "push", async event => {
 events.process();
 ```
 
-Being able to associated a Git repository to a project is a convenient way to
-provide version-controlled data to our Brigade scripts. For instance, instead
-of embedding a project's script and other configuration inside the project
-definition, these files can be fetched from source control.
+Poder associar um repositório Git com um projeto é uma maneira conviniente de
+prover controle de versão para os scripts do Brigade. Por Exemplo, en vez de
+embutir o script e outras configurações na definição do projeto, estes arquivos
+podem ser carregados do controle de código(Git).
 
-Additionally, this functionality makes Brigade a great tool for executing CI
-pipelines, deployments, packaging tasks, end-to-end tests, and other DevOps
-tasks for a given repository.
+Adicionalmente, esta funcionalidade faz o Brigade uma ótima ferramenta para
+executar CI pipelines, implantações, tarefas de empacotamento, testes de ponta a ponta e
+outras tarefas de DevOps para um dado repositório.
 
-## Working with Event and Project Data
 
-As we've seen, the event object is always passed into an event handler. This
-object also includes project data. Let's look at the data we have access to.
+## Trabalhando com Evento e Dados do Projeto
 
-### The Brigade Event
+Como vimos, o objeto evento é sempre passado para o manipulador de evento. Esse
+objeto também inclui dados do projeto. Vamos olhar nos dados que temos acesso.
 
-From the event, we can find out what triggered the event, what data was sent
-with the event, the details of the worker in charge of running the event and
-more.
+### O evento do Brigade
 
-Here are some notable fields on the event object:
+A partir do evento podemos descobrir o que disparou o evento, quais dados foram
+enviados, os detalhes do worker responsável por executar o event e muito mais.
 
-- `id` is a unique, per-event ID. Every time a new event is triggered, a new ID
-  will  be generated.
-- `project` is the project that registered the handler for this event. We'll
-  look at the fields accessible on this object below.
-- `source` is the event source. The `brig event create` command, for example,
-  would set source to `brigade.sh/cli`.
-- `type` is the event type. A GitHub Pull Request event, for example, would set
-  type to `pull_request`.
-- `payload` contains any information that the external service sent when
-  triggering the event. For example, a GitHub push request generates
-  [a rather large payload][GitHub push event]. Payload is an unparsed string.
-- `worker` is the Brigade worker assigned to handle the event. Among other
-  things, git details such as the commit (revision ID) and clone URL can be
-  found on this object.
+Aqui estão alguns campos notáveis do objeto do evento:
 
-For a full overview of the event object supplied by the brigadier library, see
+- `id` é um ID único por evento. Toda vez que um novo evento é disparado, um novo ID
+  é gerado.
+- `project` é o projeto que foi registrado para manipular esse evento. Iremos olhar
+  nos campos acessíveis neste objeto abaixo.
+- `source` é a fonte do evento. O comando `brig event create` por exemplo,
+  definiria fonte para `brigade.sh/cli`.
+- `type` é o tipo do evento. Um evento de Pull Rquest do GitHub, por exemplo, definiria
+  o tipo para `pull_request`.
+- `payload` restrições em qualquer informação que o serviço externo enviou quando
+  disparando o evento. Por exemplo, um comando push num repositório GitHub gera
+  [uma carga bastante grande ][evento push do GitHub]. Payload é uma string.
+- `worker` é o worker do Brigade atribuído para manipular o evento. Entre outras
+  coisas, detalhes do git como o commit(ID da revisão) e clonar a URL pode ser
+  encontrado neste objeto.
+
+Para um visão geral do objeto do evento fornecido pela biblioteca brigadier, see
 the [Brigadier] documentation.
 
-[GitHub push event]: https://developer.github.com/v3/activity/events/types/#pushevent
+[evento push do GitHub]: https://developer.github.com/v3/activity/events/types/#pushevent
 
-### The Project
+### O Projeto
 
 The project object (`event.project`) gives us the following fields:
 
