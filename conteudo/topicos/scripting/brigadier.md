@@ -56,11 +56,11 @@ const { events, Job, Group } = require('@brigadecore/brigadier')
 
 ## Desenvolvimento Local
 
-A biblioteca brigadier é realmente devidida em duas implementações:
+A biblioteca brigadier é realmente dividida em duas implementações:
 
 * [brigadier] quase não contém implementação de interfaces públicas
 * [brigadier-polyfill] contém a lógica para realmente se comunicar com o servidor
-  de API do Brigade; Esta é a versão substituida pelo worker durante execução.
+  de API do Brigade; Esta é a versão substituída pelo worker durante execução.
 
 Usando esta estratégia, desenvolvedores tem a posibilidade de executar seus scripts
 do Brigade localmente, sem nenhuma consequência, dando suporte ao desenvolvimento e a
@@ -138,8 +138,8 @@ de eventos não executou.
 
 ### Configuração de evento opcionais
 
-Opcionalmente, desenvolvedores podem prover a seguinte configuração quando executando seus
-scripts localmente:
+Opcionalmente, os desenvolvedores podem fornecer as seguintes configurações quando estiverem
+executando seus scripts localmente:
 
   * `BRIGADE_EVENT_FILE` - Esse é caminho para um arquivo contendo uma representação
     JSON de um evento dummy. Ver como um evento válido se apresenta, da perspectiva do
