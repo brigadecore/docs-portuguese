@@ -101,7 +101,7 @@ Notas:
   e dependências do node do worker.
 
 - Dependências são dinamicamente instaladas em cada execução de script do Brigade -
-  isso significa que se as dependências são grande em tamanho, e a frequência do
+  isso significa que se as dependências são grandes em tamanho, e a frequência do
   evento é alta para um determinado projeto, talvez faça sentido criar uma imagem
   Docker que já contenha essas dependências. Leia a documentação do [Workers] para
   mais detalhes em como fazer isso.
@@ -135,7 +135,7 @@ exports.circumference = function (r) {
 };
 ```
 
-Então, em noso arquivo `brigade.js` podemos importar e usar o arquivo:
+Então, em nosso arquivo `brigade.js` podemos importar e usar o arquivo:
 
 ```javascript
 const { events } = require("@brigadecore/brigadier");
@@ -148,7 +148,7 @@ events.on("brigade.sh/cli", "exec", async event => {
 events.process();
 ```
 
-Aqui temos a saída quando criamos um evento, via comando `brig`, para o projeto que
+Esta é a saída de quando criamos um evento, via comando `brig`, para o projeto que
 esta usando este script(mais `logLevel: DEBUG`):
 
 ```plain
