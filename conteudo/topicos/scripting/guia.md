@@ -20,7 +20,7 @@ definido pelo projeto, que o Brigade executa no contexto de uma worker para mani
 eventos que o projeto subscreveu.
 
 Os scripts do Brigade podem ser embutidos na definição do projeto ou em um git repository
-que o projeto referencia. Nos vemos estes scripts como um tipo de orquestrador de shell scripts,
+que o projeto referencia. Nós vemos estes scripts como um tipo de orquestrador de shell scripts,
 O script apenas conecta vários outros programas.
 
 Este documento irá lhe guiar através de [exemplos de projetos] aonde os scripts vão
@@ -119,10 +119,10 @@ Existem várias coisas para se entender neste script:
   scripts do Brigade fazem isso.
 - Declara um único manipulador de evento que fala "Quando um evento `exec` acontecer, rode
   esta função".
-- Não estamos utlizando o objeto `event` neste script, mas nos iremos utilizá-lo
+- Não estamos utlizando o objeto `event` neste script, mas nós iremos utilizá-lo
   em um exemplo futuro.
 - O manipulador de evento retorna uma string, a qual é opcional [sumário do evento].
-  Isto pode ser utilizado pelos gateways interessados em resultados ou outro contextos
+  Isto pode ser utilizado pelos gateways interessados em resultados ou outros contextos
   relacionados com o manipulador de eventos. O sumário apenas tem significado para o
   script e possivelmente o gateway -- caso contrário, isto é opaco para o próprio Brigade.
 - Scripts com manipuladores de eventos definidos, como este aqui, precisa chamar
@@ -130,7 +130,7 @@ Existem várias coisas para se entender neste script:
   processados.
 
 De forma similar ao nosso primeiro script, esta função de manipulador de evento exibe uma
-mensagem para o log, prodizindo a seguinte saída:
+mensagem para o log, produzindo a seguinte saída:
 
 ```plain
 $ brig event create --project first-event --follow
@@ -142,7 +142,7 @@ Waiting for event's worker to be RUNNING...
 Hello, World!
 ```
 
-> Nota: o sucesso/fracasso de um evento é determinado pelo código de saída do
+> Nota: o sucesso/falha de um evento é determinado pelo código de saída do
 > Worker executando o script. Se o script falhar ou apresentar um erro, o Worker
 > irá suspender(exit) execução com um erro que não seja zero e seja considerado
 > como uma falha.
@@ -197,7 +197,7 @@ etc forem necessários para responder ao evento e não estiverem presentes na im
 a criação de um _Job_ permite partes da manipulação do evento serem delegadas para um
 container mais apropriado e com uma imagem docker diferente do worker e definida no script.
 
-O blibioteca [Brigadier] expõe a interface para definir e executar Jobs.
+A biblioteca [Brigadier] expõe a interface para definir e executar Jobs.
 
 Na seção anterior, focamos em manipuladores de eventos que apenas logam mensagens. Nesta
 seção iremos atualizar o manipulador de evento para criar vários jobs.
@@ -215,8 +215,8 @@ events.on("brigade.sh/cli", "exec", async event => {
 events.process();
 ```
 
-A primeira coisa para perceber aqui é que _nos alteramos a primeira linha_. Além de
-importar o objeto `events`, nos também estamos importando `Job`. `Job` é a classe
+A primeira coisa para perceber aqui é que _nós alteramos a primeira linha_. Além de
+importar o objeto `events`, nós também estamos importando `Job`. `Job` é a classe
 usada para criar todos os jobs no Brigade.
 
 Em Seguida, dentro do nosso manipulador de evento `exec`, nos criamos um novo `Job`
@@ -242,7 +242,7 @@ ps -ef "hello" | grep chrome
 ```
 
 O script acima apenas organiza a maneira que nos chamamos dois programas pré existentes
-(`ps` e `grep`). Brigade faz a mesma coisa, com excessão que ao invés de executar
+(`ps` e `grep`). Brigade faz a mesma coisa, com exceção que ao invés de executar
 _programas_, ele executa _containers_. Cada container é interpretado como um Job,
 que é um wrapper que entende como executar containers.
 
@@ -344,7 +344,7 @@ My first job!
 ```
 
 > Nota: `job.run()` irá criar um exceção se o job falhar. Adicionalmente, o
-> sucesso/fracasso do job é determinado pelo código de saída do `primaryContainer`
+> sucesso/falha do job é determinado pelo código de saída do `primaryContainer`
 > job.
 
 [imagem docker customizada do Worker]: /topicos/scripting/workers
@@ -444,12 +444,12 @@ Em seguida temos o descritivo de cada método:
   de jobs) e executa cada um _em sequência_. Um novo objeto runnable é iniciado apenas quando
   o anterior finalizar. A sequência completa quando o último objeto runnable tiver finalizado
   (ou quando qualquer objeto runnable falhar). Um grupo sequencial se considera finalizado com
-  sucesso ou com falha se todos os jobs foram bem sucessidos ou não.
+  sucesso ou com falha se todos os jobs foram bem sucedidos ou não.
 - `Job.concurrent()` utiliza um array de objetos runnables e executa cada um
   _simultaneamente_. Quando a execução é iniciada, todos os objetos runnables são iniciados
-  simultaneamente (dependendo das restrições do agendador). O grupo simultâneo finaliza quando
+  simultaneamente (dependendo das restrições do agendador). Um grupo simultâneo finaliza quando
   todos os objetos runnables finalizarem. Um grupo simultâne se considera finalizado com sucesso
-  ou falha se todos os jobs foram bem sucessidos ou não.
+  ou falha se todos os jobs foram bem sucedidos ou não.
 
 Como ambos os métodos retornam um objeto runnable, eles podem ser amarrados. Neste exemplo acima,
 `job1` e `job2` rodam _em sequência_, da mesma forma que `jobA` e `jobB`, mas ambas
@@ -460,9 +460,10 @@ são executadas.
 
 Por exemplo, se você utilizar Brigade para executar uma CI(integração contínua), você poderia desejar
 dividir verificações em aquelas que requerem mais recursos para serem processadas(exemplo: compilações demoradas,
-testes de integração) e aquelas verificações que requerem menos recrusos para serem processadas como(exemplo: linting, teste unitário). Ambos os grupos podem executar os jobs simultaneamente, mas os grupos rodam de forma
-sequencial eles mesmos, de forma que nenhuma verificação que necessita de mais recursos para serem processadas
-sejam executadas até todas as verificações que requerem menos recursos tenham sido processadas.
+testes de integração) e aquelas verificações que requerem menos recrusos para serem processadas como(exemplo: linting, teste unitário).
+Ambos os grupos podem executar os jobs simultaneamente, mas os grupos rodam de forma sequencial eles mesmos,
+de forma que nenhuma verificação que necessita de mais recursos para serem processadas sejam executadas
+até que todas as verificações que requerem menos recursos já tenham sido processadas.
 
 ### Rodando um script a partir de um repositório Git
 
@@ -517,7 +518,7 @@ Hello, Git!
 
 Vamos discutir aqui o que acontece nos bastidores do Brigade quando criamos
 um evento para este projeto: Como o projeto tem um repositório Git associado,
-Brigade automaticamente começa a buscar/clonar o repositório Git, o qual fica
+o Brigade automaticamente começa a buscar/clonar o repositório Git, o qual fica
 disponível para o worker que esta processando o script.
 
 Por padrão, o conteúdo do repositório não é automaticamente montado nos jobs criados
@@ -576,7 +577,7 @@ Aqui estão alguns campos notáveis do objeto do evento:
 - `type` é o tipo do evento. Um evento de Pull Request do GitHub, por exemplo, definiria
   o tipo para `pull_request`.
 - `payload` restrições em qualquer informação que o serviço externo enviou quando
-  disparando o evento. Por exemplo, um comando push num repositório GitHub gera
+  disparou o evento. Por exemplo, um comando push num repositório GitHub gera
   um [evento push do GitHub]. Payload é uma unparsed string.
 - `worker` é o worker do Brigade atribuído para manipular o evento. Entre outras
   coisas, detalhes do git como o commit(ID da revisão) e a URL para clonar podem ser
@@ -662,10 +663,10 @@ de forma segura.
 
 ## Armazenamento no Worker e Workspace compartilhado
 
-Brigade oferece a abilidade para configurar armazenamento para o worker que pode
-então compartilhá-lo com os jobs. Esta funcionalidade não é abilitada como padrão
+O Brigade oferece a abilidade para configurar armazenamento para o worker que pode
+então compartilhá-lo com os jobs. Esta funcionalidade não é habilitada por padrão
 e precisa ser configurada na seção `workerTemplate` da definição do projeto, bem como
-em cada job no qual o script precise ter acesso ao workspace.
+em cada job onde o script precise ter acesso ao workspace.
 
 ### Um exemplo para demonstrar o uso de Workspaces compartilhados
 
@@ -713,7 +714,7 @@ Hello!
 
 > Nota: Armazenamento compartilhado depende do seu cluster Kubernetes e a
 > disponibilidade de uma tipo correto de "storage class". Leia a página
-> [Armazenamento] da documetação para mais informações sobre requerimentos
+> [Armazenamento] da documentação para mais informações sobre requerimentos
 > do cluster.
 
 [Armazenamento]: /topicos/operadores/armazenamento
@@ -725,7 +726,7 @@ que rodam junto ao container primário do job. Todos os sidecar containers serã
 finalizados pouco tempo depois que o container primário do job finalize. Algumas
 notas adicionais:
 
-- Independentemente se o sidecar containers exista, o sucesso ou fracasso do job
+- Independentemente se o sidecar containers exista, o sucesso ou falha do job
   continua sendo determinado exclusivamente pelo código de saída de seu container primário.
 - Todos os containers rodam na mesma "local network interface", possibilitando os processos escutarem
   conexões de rede em qualquer um deles para fazer seu processamento.
@@ -795,7 +796,7 @@ events.on("brigade.sh/cli", "exec", async event => {
 events.process();
 ```
 
-Esta é a saída da criação de um evento e depois chamamos o comando de visualizalção dos logs do job:
+Esta é a saída da criação de um evento e depois chamamos o comando de visualização dos logs do job:
 
 ```plain
 $ brig event create --project dind --follow
@@ -834,17 +835,17 @@ Por questões de segurança, é recomendando que você utilize Docker-em-Docker 
 ao invés de usar o socket do Docker diretamente.
 
 Entretanto, cada job também tem a opção de montar o socket do docker. Quando
-abilitado, o socket do docker presente no Node do Kubernetes que esta rodando o Pod
+habilitado, o socket do docker presente no Node do Kubernetes que esta rodando o Pod
 do Job é montado no diretório do container do job chamado `/var/run/docker.sock`.
 Isto é normalmente apenas requerido para "Docker-out-of-Docker" ("DooD") cenários
-aonde o container precisa usar o Docker daemon do Host. Esta prática é altamente
+onde o container precisa usar o Docker daemon do Host. Esta prática é altamente
 desencorajada para quase todos os casos de uso.
 
 Para que o socket seja montado, o projeto do Brigade deve ter o campo `allowDockerSocket`
-da seção `jobPolicies` da especicação do worker definida como `true`. O padrão é  `false`,
+da seção `jobPolicies` da especificação do worker definida como `true`. O padrão é  `false`,
 não permitindo o uso do socket do docker host.
 
-Este exemplo de configuração de projeto abilita este recurso:
+Este exemplo de configuração de projeto habilita este recurso:
 
 ```yaml
 workerTemplate:
@@ -899,7 +900,7 @@ CONTAINER ID   IMAGE                         COMMAND                  CREATED   
 Este guia cobre o básico de como escrever scripts do Brigade. Veja aqui alguns links
 adicionais para leitura:
 
-* Se você deseja mais detalhes sobre a interface Brigadier JS/TS API, dê uma olhada na
+* Se você deseja mais detalhes sobre a interface Brigadier JS/TS API, veja a
   documentação do [Brigadier].
 * Para exemplos de scripts e técnicas mais avançadas, leia a documentação
   [Guia de Scripting Avançado]
