@@ -1,5 +1,5 @@
 ---
-title: Guida de Scripting Avançado
+title: Guia de Scripting Avançado
 description: Este guia fornece algumas dicas e idéias avançadas de scripting
 section: scripting
 weight: 3
@@ -17,11 +17,11 @@ que você tenha familiaridade com o [Guia de scripting] e a [Brigadier API].
 
 ## Promises e o `async` `await` keywords
 
-Brigade suporta vários métodos para controlar o fluxo assíncrono de execução disponíveis
+O Brigade suporta vários métodos para controlar o fluxo assíncrono de execução disponíveis
 na linguagem JavaScript. Isto inclui "ligando promises", bem como utilizando as palavras
 chave `async` e `await`.
 
-Aqui temos um exemplo que usa [ligando Promise] para organizar a execução de dois jobs:
+Aqui temos um exemplo que usa [Promise chain] para organizar a execução de dois jobs:
 
 ```javascript
 const { events, Job } = require("@brigadecore/brigadier");
@@ -114,11 +114,11 @@ como seus métodos `run()` retornam um objeto `Promise` também.
 
 ## Manipulação de Erro
 
-Note que quando erros acontecem, este são lançados como exceções. Para manipular este
+Note que quando erros acontecem, eles são encarados como exceções. Para manipular este
 erro, use os blocos `try`/`catch`. Estes podem ser utilizados com as duas abordagens
-"ligando promise" ou usando `async`/`await`.
+"Promise chain" ou usando `async`/`await`.
 
-Usando "ligando Promise":
+Usando "Promise chaining":
 
 ```javascript
 const { events, Job } = require("@brigadecore/brigadier");
@@ -179,8 +179,8 @@ async function exec(event) {
 events.process();
 ```
 
-Olhando nos exemplo usando `async`/`await`, o segundo job(`j2`) irá executar
-`exit 1`, causando o container a finalizar com uma saída de erro. Quando 
+Olhando o exemplo `async`/`await`, o segundo job(`j2`) irá executar
+`exit 1`, e isso fará com que o container finalize com um erro. Quando
 `await j2.run()` é executado, isto irá lançar uma excecão por que `j2` terminou
 com um erro. Em nosso bloco `catch`, imprimimos a mensagem de erro que recebemos.
 
@@ -217,19 +217,19 @@ j1  	16s    	13s  	SUCCEEDED
 j2  	11s    	11s  	FAILED
 ```
 
-Isso ilustra o seguinte ponto: como escritores de script, capturando as exceções
+Isso ilustra o seguinte ponto: ao escrever o script, capturando as exceções
 dos jobs(ou outros runnables), temos a oportunidade para decidir se o workflow
 teve sucesso ou fracasso. Talvez desejamos que o worker falhe imediatamente.
-Alternativamente, talvez precisamos executar uma lógica condicional como uma última
+Em outros casos, talvez precisamos executar uma lógica condicional como uma última
 análise que iria ditar o sucesso do worker ou não.
 
-[ligando Promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[Promise chain]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [await]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await
 
 ## Usando Javascript orientado a objetos para extender o `Job`
 
-JavaScript suporta classes, utilizado por programação orientada a objetos. Um exemplo aonde
-Brigade faz uso disso é para prover uma forma útel de trabalhar com a classe `Job`.
+JavaScript suporta classes, utilizado por programação orientada a objetos. Um exemplo onde
+o Brigade faz uso disso é para prover uma forma útil de trabalhar com a classe `Job`.
 A classe `Job` pode ser extendida para pré-configurar jobs similares ou para adicionar
 funcionalidade extra ao job.
 
@@ -259,7 +259,7 @@ events.process();
 
 No exemplo acima, ambos `j1` e `j2` terão a mesma imagem e o mesmo comando.
 Ambos herdaram essas configurações da classe `MyJob`. Usando herança desta
-forma pode-se reduzir código padronizado/repetido.
+forma pode se reduzir código padronizado/repetido.
 
 Os campos podem ser seletivamente substituídos também. Poderíamos, por exemplo,
 substituir os argumentos do comando do segundo job sem afetar o primeiro:
