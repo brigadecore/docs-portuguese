@@ -1,7 +1,7 @@
 ---
-linkTitle: Introdução
-title: Introdução do Brigade
-description: Introdução geral do Brigade.
+linkTitle: Visão Geral
+title: Visão geral do Brigade
+description: Visão geral do Brigade.
 section: Introdução
 weight: 1
 aliases: 
