@@ -29,7 +29,7 @@ gradualmente aumentando de complexidade.
 ## Preparação
 
 Para continuar, você irá precisar ter acesso ao servidor de API do Brigade e fazer o logon
-usando a linha de comando CLI [brig]. Leia o [Início Rápido] se você ainda não fez isso.
+usando a linha de comando CLI [brig](topicos/desenvolvedor-de-projetos/brig). Leia o [Início Rápido](introducao/iniciorapido) se você ainda não fez isso.
 
 Então, cada exemplo de projeto pode ser criado desta forma:
 
@@ -39,13 +39,11 @@ $ brig project create -f examples/<project>/project.yaml
 
 Vamos começar!
 
-[Início Rápido]: /topicos/introducao/iniciorapido
 [Projeto]: /topicos/desenvolvedor-de-projetos/projetos
 [`package.json`]: /topicos/scripting/dependencias
 [Segredos]: /topicos/desenvolvedor-de-projetos/segredos
 [Definição do Projeto]: /topicos/desenvolvedor-de-projetos/projetos#arquivos-de-definicao-do-projeto
 [exemplos de projetos]: https://github.com/brigadecore/brigade/tree/main/examples
-[brig]: /topicos/desenvolvedor-de-projetos/brig
 
 ## Um Script básico do Brigade
 
@@ -121,7 +119,7 @@ Existem várias coisas para se entender neste script:
   esta função".
 - Não estamos utlizando o objeto `event` neste script, mas nós iremos utilizá-lo
   em um exemplo futuro.
-- O manipulador de evento retorna uma string, a qual é opcional [sumário do evento].
+- O manipulador de evento retorna uma string, a qual é opcional ([sumário do evento](topicos/desenvolvedor-de-projetos/eventos#sumario)).
   Isto pode ser utilizado pelos gateways interessados em resultados ou outros contextos
   relacionados com o manipulador de eventos. O sumário apenas tem significado para o
   script e possivelmente o gateway -- caso contrário, isto é opaco para o próprio Brigade.
@@ -183,11 +181,8 @@ Desde que o evento que criamos foi oriundo da `brigade.sh/cli` e do tipo `exec`,
 os manipuladores de eventos correpondentes foram executados. O manipulador para eventos
 oriundos do `brigade.sh/github` e do tipo `push` não foi executado.
 
-Para mais informações leia a documentação dos [Eventos] e entenda como eventos são estruturados
+Para mais informações leia a documentação dos [Eventos](topicos/desenvolvedor-de-projetos/eventos) e entenda como eventos são estruturados
 no Brigade.
-
-[Eventos]: /topicos/desenvolvedor-de-projetos/eventos
-[sumário do evento]: /topicos/desenvolvedor-de-projetos/eventos#sumario
 
 ## Jobs e Containers
 
