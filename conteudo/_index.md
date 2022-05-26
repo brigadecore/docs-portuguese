@@ -5,11 +5,11 @@ description: Homepage da documentação do Brigade
 
 ## Introdução
 
-- [Começe clicando aqui!](introducao/_index.md) Você é novo no projeto do Brigade ou esta procurando uma forma rápida de começar?
+- [Começe clicando aqui!](introducao/index) Você é novo no projeto do Brigade ou esta procurando uma forma rápida de começar?
 
 ## Tópicos
 
-- [Mergulhe nos fundamentos do Brigade](topicos/_index.md) Learn about the different roles in Brigade, integration with other tools, and
+- [Mergulhe nos fundamentos do Brigade](topicos/index) Learn about the different roles in Brigade, integration with other tools, and
 writing advanced Brigade scripts. .
 
 ## Arquitetura e Design

@@ -37,7 +37,7 @@ nosso canal do YouTube.
 > ⚠️ A configuração padrão utilizada neste guia é apropriada apenas para
 > avaliar o Brigade em seu cluster local de desenvolvimento, não devendo ser
 > utilizada para ambientes compartilhados, _especialmente para ambiente de produção_. 
-> Olhe nosso [Guida de Desenvolvimento](/topics/operators/deploy/) para instruções que sejam 
+> Olhe nosso [Guia de Implantação](/topicos/operadores/implantacao) para instruções que sejam 
 > aplicavéis para ambientes compartilhados ou clusters de produção. Nós testamos essas instruções em 
 > um cluster [KinD](https://kind.sigs.k8s.io/) local.
 
@@ -149,7 +149,7 @@ para que esta configuração se torne permanente:
 ### Logando no Brigade
 
 > ⚠️ Nesta seção iremos logar no Brigade como usuário root. Essa opção deveria estar desabilitada em ambientes de produção. Leia mais sobre
-> autenticação de usuário [aqui](/topics/administrators/authentication/).
+> autenticação de usuário [aqui](/topicos/administradores/autenticacao).
 
 Para autenticar no Brigade como usuário root, você primeiro precisa adquirir a senha gerada automaticamente pelo sistema durante a instalação:
 
@@ -183,7 +183,7 @@ criado para acessar o serviço do `brigade-apiserver` foi bem sucedida na seçã
 
 ### Criando um Projeto do Brigade
 
-Um [projeto](/topics/project-developers/projects) no brigade faz o link entre eventos subscritos e a configuração 
+Um [projeto](/topicos/desenvolvedor-de-projetos/projetos) no brigade faz o link entre eventos subscritos e a configuração 
 de seus manipuladores(event handler).
 
 1. Ao invés de criar uma definição do projeto do zero iremos acelerar o processo

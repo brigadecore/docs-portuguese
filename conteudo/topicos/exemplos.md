@@ -40,4 +40,4 @@ Para mais contexto e uma descrição desse exemplo de gateway, veja a documenta�
 
 [gateways]: https://github.com/brigadecore/brigade/tree/main/examples/gateways
 [gateway exemplo]: https://github.com/brigadecore/brigade/tree/main/examples/gateways/example-gateway
-[Gateways]: /topics/operators/gateways
+[Gateways]: /topicos/operadores/gateways

@@ -10,10 +10,7 @@ aliases:
 ---
 
 Este guia fornece algumas dicas e idéias avançadas de scripting. Assumimos
-que você tenha familiaridade com o [Guia de scripting] e a [Brigadier API].
-
-[Guia de scripting]: /topicos/scripting/guia
-[Brigadier API]: /topicos/scripting/brigadier
+que você tenha familiaridade com o [Guia de scripting](/topicos/scripting/guia) e a [Brigadier API](/topicos/scripting/brigadier).
 
 ## Promises e o `async` `await` keywords
 

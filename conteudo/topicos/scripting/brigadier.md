@@ -18,7 +18,7 @@ Um script no Brigade é executado dentro de um [Brigade Worker]. O worker padrã
 contém um ambiente Node.js para instalar [dependências] e executar o script fornecido.
 
 [Brigade Worker]: /topicos/scripting/worker
-[dependências]: /topicos/scripting/dependencies
+[dependências]: /topicos/scripting/dependencias
 
 ## Conceitos de alto nível
 
