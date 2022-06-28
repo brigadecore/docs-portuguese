@@ -11,14 +11,14 @@ aliases:
 
 Essa seção da documentação mergulha em cada parte do Brigade. Iremos olhar a Arquitetura do Brigade,
 e explorar as três principais interações com o Brigade, detalhar a API de scripting do Brigade e muito mais.
-Aqui é onde você deseja investir a mairoria do seu tempo; Se você conseguir entender estes guias, estara pronto
+Aqui é onde você deseja investir a maioria do seu tempo; Se você conseguir entender estes guias, estará pronto
 para utilizar praticamente quase tudo do Brigade.
 
 ## Table of Contents
 
 - Architecture
   - [Arquitetura e Design do Brigade](design): Explicação básica da arquitetura e Design do Brigade.
-  - [Funções do Brigade](funcoes): As principais funcões de interação existentes no Brigade
+  - [Funções do Brigade](funcoes): As principais funções de interação existentes no Brigade
 - Scripting
   - [Visão Geral](scripting/index): Visão geral de Scripting
   - [Guia de Scripting](scripting/guia): Guia para escrever scripts `brigade.js`/`brigade.ts` no Brigade

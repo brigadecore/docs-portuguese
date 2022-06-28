@@ -5,7 +5,8 @@ section: Introdução
 weight: 1
 aliases:
   - /index.md
-  - /introducao/index.md
+  - /introducao/_index.md
+  - /introducao/index/
 ---
 
 Se você acabou de conhecer o Brigade ou esta procurando aprender rapidamente a utilizá-lo, você esta no lugar certo. Leia esta página para que rapidamente você tenha o Brigade instalado e funcionando.
