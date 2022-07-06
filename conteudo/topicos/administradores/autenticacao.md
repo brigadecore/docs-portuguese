@@ -106,9 +106,9 @@ apiserver:
     github:
       clientID: <client ID>
       clientSecret: <client secret>
-      ## If only users from specific GitHub organizations should be allowed
-      ## to authenticate, list them here.  Otherwise, users from any GitHub
-      ## organization may attempt to authenticate.
+      ## Se apenas usuários de organizações específicas do GitHub devem ser permitidos
+      ## para autenticar, liste-os aqui. Caso contrário, os usuários de qualquer organização
+      ## do GitHub poderá tentar autenticar.
       allowedOrganizations:
     ## O TTL da Sessão do Usuário determina o tempo de vida padrão para as sessões do usuário.
     ## As unidades de tempo válidas são "ns", "us" (ou "µs"), "ms", "s", "m", "h".
