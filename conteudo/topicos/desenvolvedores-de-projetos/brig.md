@@ -1,6 +1,6 @@
 ---
 title: brig CLI
-description: Usando brig CLI
+description: Usando o brig CLI
 weight: 4
 aliases:
   - /brig
@@ -8,14 +8,14 @@ aliases:
   - /topicos/desenvolvedores-de-projetos/brig.md
 ---
 
-`brig` CLI fornece acesso ao repertório completo de usuários suportados com interações no Brigade, seja entrando no Brigade com `brig login`, inicializando um novo projeto Brigade com `brig init`, criando eventos com `brig event create` -- a lista continua.
+O `brig` CLI fornece acesso ao repertório completo de usuários suportados com interações no Brigade, seja entrando no Brigade com `brig login`, inicializando um novo projeto no Brigade com `brig init`, criando eventos com `brig event create` -- a lista continua.
 
 Neste documento, veremos como [instalar o brig] e, em seguida, forneceremos uma breve visão geral dos [comandos] que o brig fornece.
 
-[Instalando brig CLI]: #instalando-brig-cli
+[Instalar o brig]: #instalar-o-brig
 [comandos]: #comandos
 
-## Instalando brig CLI
+## Instalar o brig
 
 Em geral, o `brig` pode ser instalado baixando o binário apropriado da nossa [página de lançamentos](https://github.com/brigadecore/brigade/releases) para um diretório em sua máquina que esteja incluso na variável de sistema `PATH`. Em alguns sistemas, é ainda mais fácil do que isso.
 
